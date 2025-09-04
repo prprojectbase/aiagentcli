@@ -1,141 +1,268 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# AI CLI Agent
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A powerful AI-powered command-line interface agent that integrates with OpenRouter API to perform automated software development tasks. Built with Rust for performance and reliability.
 
-## ✨ Technology Stack
+## Features
 
-This scaffold provides a robust foundation built with:
+- 🤖 **AI-Powered**: Leverages OpenRouter API to access various AI models
+- 📁 **File Operations**: Read, write, edit, and delete files and directories
+- 💻 **Terminal Integration**: Execute shell commands and manage processes
+- 🎯 **Multi-Step Tasks**: Execute complex development workflows
+- 🔄 **Interactive Mode**: Chat with the AI for iterative development
+- ⚡ **Fast & Efficient**: Built with Rust for optimal performance
+- 🔧 **Configurable**: Customizable settings and model selection
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+## Installation
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### Prerequisites
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+- Rust (latest stable version)
+- OpenRouter API key
+- Git
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### Setup
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/ai-cli-agent.git
+cd ai-cli-agent
+```
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+2. Set up your OpenRouter API key:
+```bash
+export OPENROUTER_API_KEY="your_api_key_here"
+```
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+3. Build the project:
+```bash
+cargo build --release
+```
 
-## 🎯 Why This Scaffold?
+4. Run the test script to verify everything works:
+```bash
+chmod +x test_ai_agent.sh
+./test_ai_agent.sh
+```
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+## Usage
 
-## 🚀 Quick Start
+### Basic Commands
+
+#### Execute a Task
+```bash
+cargo run -- execute "write a hello world program in python"
+```
+
+#### File Operations
+```bash
+# Read a file
+cargo run -- read path/to/file.txt
+
+# Write a file
+cargo run -- write path/to/file.txt "Hello, World!"
+
+# Edit a file
+cargo run -- edit path/to/file.txt "change hello to hi"
+
+# Delete a file
+cargo run -- delete path/to/file.txt
+
+# List directory
+cargo run -- list path/to/directory
+```
+
+#### Terminal Commands
+```bash
+# Run a command
+cargo run -- run "ls -la"
+```
+
+#### Interactive Mode
+```bash
+cargo run -- interactive
+```
+
+### Advanced Usage
+
+#### Custom Model Selection
+```bash
+cargo run -- execute --model "anthropic/claude-2" "write a rust program"
+```
+
+#### Custom Working Directory
+```bash
+cargo run -- execute --work-dir "/path/to/project" "analyze this codebase"
+```
+
+#### Custom System Prompt
+```bash
+cargo run -- execute --prompt "You are an expert Rust developer" "write a web server"
+```
+
+## Configuration
+
+The AI CLI Agent uses a configuration file located at `~/.config/ai-cli-agent/config.toml`. You can customize various settings:
+
+```toml
+openrouter_api_key = "your_api_key_here"
+model = "openai/gpt-4"
+work_dir = "/path/to/your/project"
+max_tokens = 4000
+temperature = 0.7
+timeout_seconds = 120
+auto_save = true
+backup_enabled = true
+backup_dir = ".ai_cli_backups"
+```
+
+### Available Models
+
+The agent supports various models through OpenRouter:
+
+- `openai/gpt-4`
+- `openai/gpt-4-turbo`
+- `openai/gpt-3.5-turbo`
+- `anthropic/claude-2`
+- `anthropic/claude-instant-1`
+- `google/palm-2-chat-bison`
+- `google/palm-2-codechat-bison`
+- `meta-llama/llama-2-70b-chat`
+- `meta-llama/llama-2-13b-chat`
+- `mistralai/mistral-7b-instruct`
+- `mistralai/mixtral-8x7b-instruct`
+
+## Examples
+
+### Example 1: Create a Snake Game
 
 ```bash
-# Install dependencies
+cargo run -- execute "write a complete HTML snake game with CSS and JavaScript"
+```
+
+### Example 2: Modify the Game
+
+```bash
+cargo run -- edit snake.html "change the background to a gradient from blue to purple"
+```
+
+### Example 3: Build a Rust Project
+
+```bash
+cargo run -- execute "create a new Rust project with a simple web server using tokio"
+```
+
+### Example 4: Code Analysis
+
+```bash
+cargo run -- execute "analyze this codebase and suggest improvements"
+```
+
+## API Response Format
+
+The AI agent understands structured responses in the following format:
+
+```
+WRITE_FILE: filename.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+</body>
+</html>
+
+RUN_COMMAND: npm install
 npm install
 
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+EDIT_FILE: style.css
+Change the background color to blue
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+## Development
 
-## 🤖 Powered by Z.ai
-
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
-
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
+### Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+ai-cli-agent/
+├── src/
+│   ├── main.rs          # Main entry point
+│   ├── ai.rs            # OpenRouter API integration
+│   ├── file_ops.rs      # File operations
+│   ├── terminal.rs      # Terminal operations
+│   ├── config.rs        # Configuration management
+│   └── utils.rs         # Utility functions
+├── Cargo.toml           # Rust dependencies
+├── test_ai_agent.sh     # Test script
+└── README.md           # This file
 ```
 
-## 🎨 Available Features & Components
+### Adding New Features
 
-This scaffold includes a comprehensive set of modern web development tools:
+1. Add new dependencies to `Cargo.toml`
+2. Implement the feature in the appropriate module
+3. Add CLI commands in `main.rs`
+4. Update the configuration if needed
+5. Add tests
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+### Testing
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+Run the test script:
+```bash
+./test_ai_agent.sh
+```
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+Run unit tests:
+```bash
+cargo test
+```
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+## Troubleshooting
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+### Common Issues
 
-## 🤝 Get Started with Z.ai
+1. **API Key Not Found**
+   - Make sure you've set the `OPENROUTER_API_KEY` environment variable
+   - Check your configuration file
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+2. **Permission Denied**
+   - Ensure you have write permissions in the target directory
+   - Check file system permissions
 
----
+3. **Network Issues**
+   - Verify your internet connection
+   - Check if OpenRouter API is accessible
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+4. **Build Errors**
+   - Ensure you have the latest Rust version
+   - Run `cargo clean` and try building again
+
+### Debug Mode
+
+Enable debug logging:
+```bash
+RUST_LOG=debug cargo run -- execute "your task"
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support, please open an issue on GitHub or contact the maintainers.
+
+## Acknowledgments
+
+- OpenRouter for providing AI model access
+- Rust community for excellent tools and libraries
+- All contributors who have helped improve this project
